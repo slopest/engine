@@ -45,20 +45,56 @@ Instruction (
 
 ## Instructions list
 
-- Slope
-- Name
-- Desc
-- Grade
-- Color
+### Code structure
 
-- Grid `width` `height`
-- Pos `x` `y` `z`
-- Rotation `x` `y` `z`
-- Scale `x` `y` `z`
+#### `Slope <version:integer>`
 
-- Meta
-  - Any string instruction
-- Hold
-  - Pos
-  - Rotation
-  - Scale
+Specify the version of Slope that the parser will use. For the moment, only the version 1 exists.
+
+#### `Unit <unit:string>`
+
+Speficy a unit for lengths. Supported values are: `m`, `cm`.
+
+### Route definition
+
+#### `Name <name:string>`
+
+Specify a name for the route.
+
+#### `Desc <description:string>`
+
+Specify a description for the route.
+
+#### `Grade <grade:string>`
+
+Specify the grade of the route
+
+#### `Color <color:string>`
+
+Specify a global color for the route
+
+#### `Meta (block)`
+
+Add as many fields as you want to the route. These fields can serve to specify additional details such as notes, photos, location...
+
+#### `Grid <width:integer> <height:integer>`
+
+Specify the grid size for the route
+
+### Holds definition
+
+#### `Hold <type:string> (block)`
+
+Add a new hold to the route. The block contains the following instructions :
+
+#### `Pos <x:float> <y:float> <z:float>`
+
+The three-dimensional position of the hold.
+
+#### `Rotation <x:float> <y:float> <z:float>`
+
+The three-dimensional rotation of the hold.
+
+#### `Scale <x:float> <y:float> <z:float>`
+
+The three-dimensional scale of the hold.
