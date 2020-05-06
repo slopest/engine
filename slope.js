@@ -1,41 +1,21 @@
-const SLOPE_INSTRUCTIONS = [
-  'Slope',
-
-  'Name',
-  'Desc',
-  'Grade',
-  'Color',
-  'Grid',
-  'Meta',
-
-  'Hold',
-  'Pos',
-  'Scale',
-  'Rotation'
-]
-
 const BLANK = ''
 const COMMENT = 'comment'
 const BLOCK_START = '('
 const BLOCK_END = ')'
 
 const INSTRUCTIONS = [
-  {
-    name: 'Name',
-    type: 'string'
-  },
-  {
-    name: 'Grid',
-    type: 'params'
-  },
-  {
-    name: 'Hold',
-    type: 'block'
-  },
-  {
-    name: 'Pos',
-    type: 'params'
-  }
+  { name: 'Slope', type: 'params' },
+
+  { name: 'Name', type: 'string' },
+  { name: 'Desc', type: 'string' },
+  { name: 'Grade', type: 'string' },
+  { name: 'Color', type: 'string' },
+  { name: 'Grid', type: 'params' },
+
+  { name: 'Hold', type: 'block' },
+  { name: 'Pos', type: 'params' },
+  { name: 'Scale', type: 'params' },
+  { name: 'Rotation', type: 'params' }
 ]
 
 class Lexer {
