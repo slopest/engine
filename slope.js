@@ -11,6 +11,7 @@ const INSTRUCTIONS = [
   { name: 'Grade', type: 'string' },
   { name: 'Color', type: 'string' },
   { name: 'Grid', type: 'params' },
+  { name: 'Meta', type: 'block', arbitrary: true },
 
   { name: 'Hold', type: 'block' },
   { name: 'Pos', type: 'params', depends: 'Hold' },
@@ -51,14 +52,18 @@ class Lexer {
     let params = line.split(' ')
     if (params[0].charAt(0) === '#') return COMMENT
 
-    let instruction = INSTRUCTIONS.find(i => i.name === params[0])
-    if (instruction === undefined)
-    this.croak(`Unknown instruction ${params[0]}. Check the documentation for a complete list of instructions.`)
-
-    let type = params[0].toLowerCase()
+    let type = params[0]
     params.shift()
+  
+    let try_meta = INSTRUCTIONS.find(i => i.name === block)
+    if (try_meta !== undefined && try_meta.name === 'Meta')
+      return this.readStringInstruction(type, params)
 
-    if (instruction.depends !== undefined && instruction.depends.toLowerCase() !== block)
+    let instruction = INSTRUCTIONS.find(i => i.name === type)
+    if (instruction === undefined)
+    this.croak(`Unknown instruction ${type}. Check the documentation for a complete list of instructions.`)
+
+    if (instruction.depends !== undefined && instruction.depends !== block)
     this.croak(`Instruction ${instruction.name} depends on a ${instruction.depends} block. Try wrap it inside this block.`)
 
     switch (instruction.type) {
@@ -107,11 +112,13 @@ console.log(lex.readCode(
 `Name gros delire
 #Ceci est un commentaire
 Grid 5 14
+Meta (
+  Location Bourg-en-Bresse
+  HighestLink https://preview.highest.app/route/7158985756874/5788854869984
+)
 
 Hold yep (
   Pos 4 8 9
 )
-
-Pos 4 8 9
 
 Name mdr`))
