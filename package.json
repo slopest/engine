@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Engine for the Slope route modelisation",
   "scripts": {
-    "test": "rollup -c && jest",
-    "build": "rollup -c"
+    "test": "jest",
+    "build": "rollup -c && jest"
   },
   "repository": {
     "type": "git",
