@@ -33,5 +33,37 @@ test('parsing code to lexer returns good instructions', () => {
 
   console.log(instructions)
   expect(instructions[1].type).toBe('Name')
+  expect(instructions[5].instructions[1].value).toBe('Paris, France')
+  expect(instructions[7].instructions[2].params).toStrictEqual(['15', '0', '0'])
 })
 
+test("throw an error when a block isn't closed", () => {
+  let lexer = new Lexer()
+  expect(() => {
+    lexer.readCode(`
+      Hold (
+        Pos 8 7 9.4
+    `)
+  }).toThrow('Reached end of file without closing block. Review all the blocks you created and check if you closed them using the ")" statement.')
+})
+
+test("throw an error when a block isn't started", () => {
+  let lexer = new Lexer()
+  expect(() => {
+    lexer.readCode(`
+      Hold
+        Pos 8 7 9.4
+      )
+    `)
+  }).toThrow('Excepted a block start with the "(" character')
+})
+
+test("throw an error when a dependent instruction is alone", () => {
+  let lexer = new Lexer()
+  expect(() => {
+    lexer.readCode(`
+      Name this route
+      Pos 7 9 6.4
+    `)
+  }).toThrow('Instruction Pos depends on a Hold block. Try wrap it inside this block.')
+})
