@@ -1,4 +1,4 @@
-const Lexer = require('../dist/slope-engine')
+const { Lexer } = require('../dist/slope-engine')
 
 test('parsing code to lexer returns good instructions', () => {
   let lexer = new Lexer()
