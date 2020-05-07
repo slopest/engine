@@ -1,4 +1,4 @@
-# Slope v1 definition
+# Slope v2 definition
 
 ## Introduction
 

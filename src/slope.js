@@ -22,7 +22,6 @@ const INSTRUCTIONS = [
 class Lexer {
   readCode(code) {
     this.line = -1
-    this.instructions = []
     this.lines = code.split('\n')
     
     return this.readProgram()
