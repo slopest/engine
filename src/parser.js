@@ -1,10 +1,14 @@
+import INSTRUCTIONS from './data/instructions'
+
 class Parser {
   parse(instructions) {
     this.route = {
       holds: []
     }
-    for (const [index, instruction] of instructions.entries()) {
-      this.number = index
+    this.checkRequired(instructions)
+
+    for (const instruction of instructions) {
+      this.line = instruction.line
       switch (instruction.type) {
         case 'Slope':
           // For the moment, the "Slope" instruction isn't used, because there's only one version of the language.
@@ -41,13 +45,23 @@ class Parser {
     return this.route
   }
 
+  checkRequired(instructions) {
+    const required = INSTRUCTIONS.filter(instruction => instruction.required && instruction.depends === undefined)
+    for (const instruction of required) {
+      const trial = instructions.find(i => i.type === instruction.name)
+      if (trial === undefined)
+        this.croak(`At least one ${instruction.name} instruction is required. Please insert one to make your code correct.`)
+    }
+  }
+
   parseSoloInstruction(name, value) {
     if (this.route[name] === undefined) this.route[name] = value
-    else this.croak(`A route can only have one ${name}. Remove other instructions of this type to leave just one.`)
+    else
+      this.croak(`A route can only have one ${name}. Remove other instructions of this type in order to leave just one.`)
   }
 
   parseMeta(instructions) {
-    for (let instruction of instructions) {
+    for (const instruction of instructions) {
       this.route[instruction.type] = instruction.value
     }
   }
@@ -85,7 +99,7 @@ class Parser {
   }
 
   croak(message) {
-    throw new Error(`Error in parsing Slope code at instruction n°${this.number + 1}: ${message}`)
+    throw new Error(`Error in parsing Slope code at line ${this.line}: ${message}`)
   }
 }
 

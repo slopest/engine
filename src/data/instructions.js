@@ -1,10 +1,9 @@
 export default [
-  { name: 'Slope', type: 'params' },
+  { name: 'Slope', type: 'params', required: true },
 
-  { name: 'Name', type: 'string' },
-  { name: 'Desc', type: 'string' },
-  { name: 'Grade', type: 'string' },
-  { name: 'Color', type: 'string' },
+  { name: 'Name', type: 'string', required: true },
+  { name: 'Desc', type: 'string', required: true },
+  { name: 'Grade', type: 'string', required: true },
   { name: 'Grid', type: 'params' },
   { name: 'Meta', type: 'block', arbitrary: true },
 

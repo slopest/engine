@@ -57,6 +57,7 @@ class Lexer {
   readStringInstruction(type, args) {
     return {
       type,
+      line: this.line + 1,
       value: args.join(' ')
     }
   }
@@ -64,6 +65,7 @@ class Lexer {
   readParamsInstruction(type, args) {
     return {
       type,
+      line: this.line + 1,
       params: args
     }
   }
@@ -73,6 +75,7 @@ class Lexer {
     if (start !== BLOCK_START) this.croak('Excepted a block start with the "(" character')
     return {
       type,
+      line: this.line + 1,
       params: args,
       instructions: this.readProgram(type)
     }
