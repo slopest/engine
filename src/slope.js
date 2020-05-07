@@ -107,18 +107,4 @@ class Lexer {
   }
 }
 
-let lex = new Lexer()
-console.log(lex.readCode(
-`Name gros delire
-#Ceci est un commentaire
-Grid 5 14
-Meta (
-  Location Bourg-en-Bresse
-  HighestLink https://preview.highest.app/route/7158985756874/5788854869984
-)
-
-Hold yep (
-  Pos 4 8 9
-)
-
-Name mdr`))
+export default Lexer
