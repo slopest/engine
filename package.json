@@ -1,0 +1,38 @@
+{
+  "name": "slope-engine",
+  "version": "1.0.0",
+  "description": "Engine for the Slope route modelisation",
+  "scripts": {
+    "test": "jest",
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/exybore/slope-engine.git"
+  },
+  "keywords": [
+    "slope",
+    "climbing",
+    "modeling",
+    "climbing-route",
+    "language"
+  ],
+  "author": "exybore",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/exybore/slope-engine/issues"
+  },
+  "homepage": "https://github.com/exybore/slope-engine#readme",
+  "main": "dist/slope-engine.js",
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "devDependencies": {
+    "babel-jest": "^26.0.1",
+    "jest": "^26.0.1",
+    "rollup": "^2.8.2",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-terser": "^5.3.0"
+  }
+}
