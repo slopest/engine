@@ -12,6 +12,7 @@ class Parser {
       switch (instruction.type) {
         case 'Slope':
           // For the moment, the "Slope" instruction isn't used, because there's only one version of the language.
+          this.parseSoloInstruction('slope', Number(instruction.params[0]))
           break
         case 'Name':
           this.parseSoloInstruction('name', instruction.value)
@@ -61,8 +62,9 @@ class Parser {
   }
 
   parseMeta(instructions) {
+    this.route.meta = {}
     for (const instruction of instructions) {
-      this.route[instruction.type] = instruction.value
+      this.route.meta[instruction.type] = instruction.value
     }
   }
 

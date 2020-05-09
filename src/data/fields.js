@@ -1,1 +1,1 @@
-export default ['name', 'description', 'grade']
+export default ['slope', 'name', 'description', 'grade']
