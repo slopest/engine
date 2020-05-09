@@ -1,9 +1,10 @@
 {
   "name": "slope-engine",
-  "version": "1.0.0",
+  "version": "1.0.0-beta1",
   "description": "Engine for the Slope route modelisation",
   "scripts": {
     "test": "jest",
+    "build:solo": "rollup -c",
     "build": "rollup -c && jest"
   },
   "repository": {
