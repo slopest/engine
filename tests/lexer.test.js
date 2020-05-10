@@ -1,7 +1,8 @@
 const { Lexer } = require('../dist/slope-engine')
 
+const lexer = new Lexer()
+
 test('parsing code to lexer returns good instructions', () => {
-  let lexer = new Lexer()
   let instructions = lexer.readCode(
     `Slope 1
 
@@ -38,7 +39,6 @@ test('parsing code to lexer returns good instructions', () => {
 })
 
 test("throw an error when a block isn't closed", () => {
-  let lexer = new Lexer()
   expect(() => {
     lexer.readCode(`
       Hold (
@@ -48,7 +48,6 @@ test("throw an error when a block isn't closed", () => {
 })
 
 test("throw an error when a block isn't started", () => {
-  let lexer = new Lexer()
   expect(() => {
     lexer.readCode(`
       Hold
@@ -59,7 +58,6 @@ test("throw an error when a block isn't started", () => {
 })
 
 test("throw an error when a dependent instruction is alone", () => {
-  let lexer = new Lexer()
   expect(() => {
     lexer.readCode(`
       Name this route

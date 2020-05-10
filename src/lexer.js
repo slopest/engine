@@ -49,10 +49,11 @@ class Lexer {
     let type = params[0]
     params.shift()
 
-    // If we're inside a Meta block, return all the instructions as strings without checking in the language definition
-    let try_meta = INSTRUCTIONS.find(i => i.name === block)
-    if (try_meta !== undefined && try_meta.name === 'Meta')
-      return this.readStringInstruction(type, params)
+    // If we're inside an arbitrary block such as Meta, return all the instructions as strings without checking in the language definition
+    if (block !== null) {
+      let block_instruction = INSTRUCTIONS.find(i => i.name === block)
+      if (block_instruction.arbitrary) return this.readStringInstruction(type, params)
+    }
 
     let instruction = INSTRUCTIONS.find(i => i.name === type)
     if (instruction === undefined)
