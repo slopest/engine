@@ -1,3 +1,11 @@
+// This file defines all the instructions that are available in Slope.
+// Objects with instructions contains the following properties:
+// - name: the common name of the instruction, that is written as this into the code
+// - type: the type of the instruction - string, params or block
+// - required: set if the instruction is required in the code
+// - arbitrary: set if the instruction is a block and the instructions inside aren't defined in Slope (e.g: Meta)
+// - depends: set if the instruction has to be placed inside a specific block
+
 export default [
   { name: 'Slope', type: 'params', required: true },
 

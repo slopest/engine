@@ -1,10 +1,14 @@
 import INSTRUCTIONS from './data/instructions'
 
+// Class Parser is the part that transforms a list of instructions returned by the Lexer, into a JavaScript object that
+// we can work with.
 class Parser {
+  // parse parses a list of instructions into a JavaScript object
   parse(instructions) {
     this.route = {
       holds: []
     }
+
     this.checkRequired(instructions)
 
     for (const instruction of instructions) {
@@ -46,6 +50,7 @@ class Parser {
     return this.route
   }
 
+  // checkRequired checks into the instructions list if every required instruction is inside
   checkRequired(instructions) {
     const required = INSTRUCTIONS.filter(instruction => instruction.required && instruction.depends === undefined)
     for (const instruction of required) {
@@ -55,12 +60,14 @@ class Parser {
     }
   }
 
+  // parseSoloInstruction parses an instruction that must be once in all the code
   parseSoloInstruction(name, value) {
     if (this.route[name] === undefined) this.route[name] = value
     else
       this.croak(`A route can only have one ${name}. Remove other instructions of this type in order to leave just one.`)
   }
 
+  // parseMeta parses the Meta block.
   parseMeta(instructions) {
     this.route.meta = {}
     for (const instruction of instructions) {
@@ -68,6 +75,7 @@ class Parser {
     }
   }
 
+  // parseHold parses a Hold block, so a block that defines a hold
   parseHold(block) {
     let hold = {
       type: block.params[0]
@@ -85,6 +93,8 @@ class Parser {
           hold.scale = this.parseCoordinates(prop.params)
           break
         default:
+          // Only some instructions are accepted inside a Hold block.
+          // If another one is inside, throw an error
           this.croak(`Unknown hold property ${prop.type}. Check the documentation for a complete list of instructions.`)
       }
     }
@@ -92,6 +102,8 @@ class Parser {
     this.route.holds.push(hold)
   }
 
+  // parseCoordinates parses an instruction that defines coordinates
+  // Mainly used for position, rotation and scale instructions to define the complete geometry of the hold
   parseCoordinates(params) {
     return {
       x: Number(params[0]),
@@ -100,6 +112,7 @@ class Parser {
     }
   }
 
+  // croak throws an error
   croak(message) {
     throw new Error(`Error in parsing Slope code at line ${this.line}: ${message}`)
   }

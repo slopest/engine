@@ -1,6 +1,9 @@
 import FIELDS from './data/fields'
 
+// Class Encoder is the part that transforms an object into actual Slope code
 class Encoder {
+  // encode transforms an object into Slope code
+  // The entry object must be close to what the parser returns
   encode(data) {
     this.checkRequired(data)
 
@@ -34,10 +37,12 @@ class Encoder {
     return this.code
   }
 
+  // appendInstruction adds an instruction to the code
   appendInstruction(instruction, value) {
     this.code += `${instruction} ${value}\n`
   }
 
+  // appendBlock adds a block with its instructions to the code
   appendBlock(name, params, instructions) {
     this.appendInstruction(name, `${params} (`)
     instructions.forEach(instruction => {
@@ -46,6 +51,7 @@ class Encoder {
     this.code += `)\n\n`
   }
 
+  // checkRequired checks in the object if all the required fields are here
   checkRequired(data) {
     for (const field of FIELDS) {
       if (!Object.keys(data).includes(field))
@@ -53,6 +59,7 @@ class Encoder {
     }
   }
 
+  // croak throws an error
   croak(message) {
     throw new Error(`Error in encoding Slope data: ${message}`)
   }
