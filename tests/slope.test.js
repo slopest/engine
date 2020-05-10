@@ -1,0 +1,1 @@
+const Engine = require('../dist/slope-engine')

@@ -49,7 +49,7 @@ test('throw an error if an instruction is unknown', () => {
   let instructions = [
     { type: 'Name', value: 'route' },
     { type: 'Desc', value: 'route' },
-    { type: 'Slope', value: '1' },
+    { type: 'Slope', params: ['1'] },
     { type: 'Grade', value: '5B' },
     { type: 'Color', value: 'red' }
   ]
