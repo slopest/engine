@@ -43,8 +43,8 @@ class Lexer {
   readInstruction(line, block) {
     let params = line.split(' ')
 
-    // Omitting comments
-    if (params[0].charAt(0) === '#') return COMMENT
+    // Omitting comments, so lines that start with an # character
+    if (params[0].charAt(0) === COMMENT) return COMMENT
 
     let type = params[0]
     params.shift()

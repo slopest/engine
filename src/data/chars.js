@@ -1,7 +1,7 @@
 // This file contains all the characters specific to the language, i.e that makes special actions
 
 const BLANK = ''
-const COMMENT = 'comment'
+const COMMENT = '#'
 const BLOCK_START = '('
 const BLOCK_END = ')'
 
