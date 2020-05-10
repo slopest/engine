@@ -1,4 +1,5 @@
 <div align="center">
+    <img src="./docs/engine.png" alt="Logo" width="200"/>
     <h1>Slope Engine</h1>
     <h3>Engine for the Slope route modelisation</h3>
     <a href="https://slope.netlify.app">Website</a> &mdash; <a href="https://docs.slope.netlify.app">Documentation</a> &mdash; <a href="./LICENSE">License</a>
